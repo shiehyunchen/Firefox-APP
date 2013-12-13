@@ -1,0 +1,25 @@
+{
+  "version": "0.1",
+  "name": "NCU-Student-tool-kit",
+  "description": "Your new awesome Open Web App",
+  "launch_path": "/index.html",
+  "icons": {
+    "128": "/img/icon/icon-128.png"
+  },
+  "developer": {
+    "name": "Master Ray and Minions"
+  }, 
+  "default_locale": "en",
+  "type": "certified",
+  "permissions": {
+        "geolocation": {
+            "description" : "Used to locate me"
+        },
+		"systemXHR": { 
+			"description": "Required to make Network calls" 
+		},
+		"device-storage:apps":{
+			"access": "readwrite" 
+		}
+  }
+}
