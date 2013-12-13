@@ -1,0 +1,10 @@
+C:\Users\wmlab7\Documents\Visual Studio 2012\Projects\WebService1\WebService1\bin\WebService1.dll
+C:\Users\wmlab7\Documents\Visual Studio 2012\Projects\WebService1\WebService1\bin\WebService1.pdb
+C:\Users\wmlab7\Documents\Visual Studio 2012\Projects\WebService1\WebService1\obj\Debug\WebService1.csprojResolveAssemblyReference.cache
+C:\Users\wmlab7\Documents\Visual Studio 2012\Projects\WebService1\WebService1\obj\Debug\WebService1.dll
+C:\Users\wmlab7\Documents\Visual Studio 2012\Projects\WebService1\WebService1\obj\Debug\WebService1.pdb
+C:\WebService1\WebService1\bin\WebService1.dll
+C:\WebService1\WebService1\bin\WebService1.pdb
+C:\WebService1\WebService1\obj\Debug\WebService1.csprojResolveAssemblyReference.cache
+C:\WebService1\WebService1\obj\Debug\WebService1.dll
+C:\WebService1\WebService1\obj\Debug\WebService1.pdb
