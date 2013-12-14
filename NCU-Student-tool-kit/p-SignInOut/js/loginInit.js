@@ -15,6 +15,10 @@ function send(){
 			window.localStorage.setItem("acc", acc);				
 			window.localStorage.setItem("pwd", pwd);
 		}
+		else{
+			window.sessionStorage.setItem("acc", acc);				
+			window.sessionStorage.setItem("pwd", pwd);
+		}
 		var info = "id="+acc+"&"+"pw="+pwd;
 		
 		$.ajax({
@@ -30,7 +34,8 @@ function send(){
 					alert("User或Password錯誤");					
 				}
 				else{
-					self.location.href='./SignInOut.html';
+					window.sessionStorage.setItem("fromLogin","1");
+					self.location.href='./SignInOut.html';					
 				}
 			}
 		 },

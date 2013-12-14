@@ -2,6 +2,7 @@ $(function(){
 	$('#saveButton').click(function() {
 		window.localStorage.setItem("acc", $('#acc').val());				
 		window.localStorage.setItem("pwd", $('#pwd').val());
+		window.sessionStorage.clear();
 		//window.localStorage
 		//alert($('#acc').val()+'+'+$('#pwd').val());
 	});	

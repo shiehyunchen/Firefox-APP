@@ -1,8 +1,16 @@
 $(function(){
 	setTheme(window.localStorage.getItem("AppTheme"));
 	setFontSize(window.localStorage.getItem("AppFontSize"));
-	var acc = window.localStorage.getItem("acc");
-	var pwd = window.localStorage.getItem("pwd");
+	var login = window.sessionStorage.getItem("fromLogin");
+	var acc,pwd;
+	if(login==null){
+		acc = window.localStorage.getItem("acc");
+		pwd = window.localStorage.getItem("pwd");
+	}
+	else{
+		acc = window.sessionStorage.getItem("acc");
+		pwd = window.sessionStorage.getItem("pwd");
+	}
 	if(acc==null||pwd==null||acc==""||pwd=="")
 		self.location.href='./Login.html';
 	else {
