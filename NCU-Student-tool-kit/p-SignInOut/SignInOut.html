@@ -1,12 +1,31 @@
-<!DOCTYPE html>
 <html>
 	<head>
-		<title>SignInOut</title>
-	</head>
-	
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/> 
+		<title>SignInOut</title> 
+		<link rel="stylesheet" type="text/css" href="./css/img.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/jquery.mobile-1.3.1.min.css"/>
+		<script type="text/javascript" src='../js/jquery-1.10.2.min.js'></script>
+		<script type="text/javascript" src='../js/jquery.mobile-1.3.1.min.js'></script>
+		<script type="text/javascript" src='./js/signinoutInit.js'></script>
+		<script type="text/javascript" src='../js/setTheme.js'></script>
+	</head>	
 	<body>
-		<h1>Hello,SignInOut.</h1><br />
-		
-		<button onclick="javascript:history.back(1)">Back</button>
+		<div id="page" data-role="page">
+			<div id="header" data-role="header" data-id="fool" data-position="fixed">
+				<a href="../index.html" data-icon="back" >Back</a>			
+				<h1>SignInOut</h1>
+			</div>			
+			<div id="content" data-role="content">				
+				<div id="fieldcontain" data-role="fieldcontain">					
+					<fieldset id="optionsgroup" data-role="controlgroup">						
+					</fieldset>					
+				</div>
+				<img id="image" src = "" onclick=""/>
+			</div>	
+			<div id="footer" data-role="footer">							
+			</div>
+		</div>
+
 	</body>
 </html>

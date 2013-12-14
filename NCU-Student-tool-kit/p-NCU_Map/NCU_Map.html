@@ -1,12 +1,20 @@
-<!DOCTYPE html>
 <html>
 	<head>
-		<title>NCU Map</title>
-	</head>
-	
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/> 
+		<title>NCU_MAP</title> 	
+		<link rel="stylesheet" type="text/css" href="../css/jquery.mobile-1.3.1.min.css"/>
+		<script type="text/javascript" src='../js/jquery-1.10.2.min.js'></script>
+		<script type="text/javascript" src='../js/jquery.mobile-1.3.1.min.js'></script>
+		<script type="text/javascript" src='./js/ncumapInit.js'></script>
+		<script type="text/javascript" src='../js/setTheme.js'></script>
+	</head>	
 	<body>
-		<h1>Hello,NCU Map.</h1><br />
-		
-		<button onclick="javascript:history.back(1)">Back</button>
+		<div id="page" data-role="page">
+			<div id="header" data-role="header" data-id="fool" data-position="fixed">
+			<a href="../index.html" data-icon="back" >Back</a>		
+			<h1>NCU Map</h1>
+			</div>
+		</div>		
 	</body>
 </html>
