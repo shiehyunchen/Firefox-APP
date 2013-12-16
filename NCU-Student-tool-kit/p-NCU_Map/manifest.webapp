@@ -1,0 +1,18 @@
+{
+    "version":"1.0",
+	"name": "NCU_Map",
+    "launch_path": "/NCU_Map.html",
+    "icons": {
+        "128": "/images/icon_128.png"
+    },
+    "default_locale": "en",
+	"type": "privileged",
+    "permissions": {
+        "geolocation": {
+            "description" : "Used to locate me"
+        },
+		"systemXHR": { 
+		    "description": "Required to make Network calls" 
+	    }
+    }
+}
