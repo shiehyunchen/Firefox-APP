@@ -64,7 +64,7 @@ namespace WebService1
             Match matche = Regex.Match(strHtml, "<tr>\\s*<td>(\\s|.)+?<div class=\"pglink\">", RegexOptions.Multiline);
             strTemp = matche.Value;
 
-            MatchCollection matches = Regex.Matches(strTemp, "<a style=(\\s|.)+?</a></td>", RegexOptions.Multiline);
+            MatchCollection matches = Regex.Matches(strTemp, "href=(\\s|.)+?</a></td>", RegexOptions.Multiline);
             foreach (Match match in matches)
             {
 
@@ -77,8 +77,8 @@ namespace WebService1
                 strID = Regex.Match(strUrl, "pno=.+?$", RegexOptions.Multiline).Value;
                 strID = Regex.Replace(strID, "pno=|\\s", "");
 
-                strInfoDate = Regex.Match(match.Value, "<strong>[(](\\s|.)+?[)]", RegexOptions.Multiline).Value;
-                strInfoDate = Regex.Replace(strInfoDate, "<strong>[(]|[)]", "");
+                strInfoDate = Regex.Match(match.Value, "[(](\\d)+-(\\d)+-(\\d)+[)]", RegexOptions.Multiline).Value;
+                strInfoDate = Regex.Replace(strInfoDate, "[(]|[)]", "");
 
                 SaveDataToRow(ref dtTemp, strID, strTitle, strUrl, strInfoDate);
             }
