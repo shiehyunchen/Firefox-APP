@@ -22,10 +22,12 @@ namespace WebService1
     public class Service1 : System.Web.Services.WebService
     {
         protected NewsofDepartment m_NewsofDepartment;
+        protected NewsofBBSystem m_NewsofBBSystem;
 
         public Service1()
         {
             m_NewsofDepartment = new NewsofDepartment();
+            m_NewsofBBSystem = new NewsofBBSystem();
         }
 
         [WebMethod]
@@ -46,7 +48,19 @@ namespace WebService1
         [WebMethod]
         public string GetDepartmentNewsList(int iPage)
         {
-            Context.Response.Write(m_NewsofDepartment.GetLibraryNewsList(iPage));
+            Context.Response.Write(m_NewsofDepartment.GetDepartmentNewsList(iPage));
+            Context.Response.End();
+
+            return "";
+        }
+
+        [WebMethod]
+        public string GetBBSystemCourseList(string strStudentID, string strPassword)
+        {
+            CookieContainer cookies = new CookieContainer();
+
+            m_NewsofBBSystem.BBSystemLogin(ref cookies, strStudentID, strPassword);
+            Context.Response.Write(m_NewsofBBSystem.GetBBSystemCourseTitle(cookies));
             Context.Response.End();
 
             return "";

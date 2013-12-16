@@ -30,7 +30,7 @@ namespace WebService1
 
         }
 
-        public string GetLibraryNewsList(int iPage)
+        public string GetDepartmentNewsList(int iPage)
         {
             if (iPage <= 0)
                 iPage = 1;
