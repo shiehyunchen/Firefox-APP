@@ -21,12 +21,36 @@ namespace WebService1
     [System.Web.Script.Services.ScriptService]
     public class Service1 : System.Web.Services.WebService
     {
+        protected NewsofDepartment m_NewsofDepartment;
+
+        public Service1()
+        {
+            m_NewsofDepartment = new NewsofDepartment();
+        }
+
         [WebMethod]
         public string HelloWorld()
         {
             return "Hello World";
         }
 
+        /**
+         * GetDepartmentNewsList - Get the department's news titles
+         * @iPage: which page is requested by client
+         * Return: a json string about ID, title, URL, and date
+         * 
+         * This function is called to get one page news titles.
+         * Client can chose one news URL to get more detail content
+         * by function GetDepartmentNewsContent().
+         **/
+        [WebMethod]
+        public string GetDepartmentNewsList(int iPage)
+        {
+            Context.Response.Write(m_NewsofDepartment.GetLibraryNewsList(iPage));
+            Context.Response.End();
+
+            return "";
+        }
 
         [WebMethod]
         public string GetState(string id, string pw)                   //登入帳號,回傳帳號的狀態
@@ -34,17 +58,17 @@ namespace WebService1
             CookieContainer cc = new CookieContainer();             //存網站的cookie
             cc = login(id, pw);
 
-            if(cc.Count == 0)                                       //cookie取得失敗 結束並回傳
+            if (cc.Count == 0)                                       //cookie取得失敗 結束並回傳
                 return "網路連線異常";
 
             string ReturnPage = GetWebSource("signin", "None", cc);                    //存到ReturnPage
 
-            if(ReturnPage.Contains("國立中央大學入口網站"))                                     //包含此字串,代表登入失敗
+            if (ReturnPage.Contains("國立中央大學入口網站"))                                     //包含此字串,代表登入失敗
             {
                 var result = new { state = "User或Password錯誤" };                             //回傳訊息包程JSON
                 ReturnPage = JsonConvert.SerializeObject(result);
             }
-            else if(ReturnPage.Contains("請選擇下列計畫進行簽到"))                         //登入成功,且尚未簽到,  回傳簽到項目
+            else if (ReturnPage.Contains("請選擇下列計畫進行簽到"))                         //登入成功,且尚未簽到,  回傳簽到項目
             {
                 List<int> RadioIndex = new List<int>();              //存radio button在 page裡的index
                 List<int> LineIndex = new List<int>();              //存切割出來的行數 index
@@ -73,11 +97,12 @@ namespace WebService1
                     tmpPage = tmpPage.Substring(start_idx + 1, end_idx - 1 - (start_idx + 1));  //切割title
                     title.Add(tmpPage);                                                         //存入List
                 }
-                var result = new {
-                                    state = "登入成功,尚未簽到",
-                                    count = title.Count,
-                                    title = from s in title select s 
-                                  };                                                            //包成JSON
+                var result = new
+                {
+                    state = "登入成功,尚未簽到",
+                    count = title.Count,
+                    title = from s in title select s
+                };                                                            //包成JSON
 
                 ReturnPage = JsonConvert.SerializeObject(result);
             }
@@ -88,10 +113,10 @@ namespace WebService1
             }
             return ReturnPage;
         }
-        
-        
+
+
         [WebMethod]
-        public string signin_out(string id, string pw, string  in_out, int TitleNum)        //in_out 傳入值為 signin 或 signout  ,   TitleNum為第幾個案子
+        public string signin_out(string id, string pw, string in_out, int TitleNum)        //in_out 傳入值為 signin 或 signout  ,   TitleNum為第幾個案子
         {
             CookieContainer cc = new CookieContainer();             //存網站的cookie
 
@@ -108,7 +133,7 @@ namespace WebService1
                 lastvalue = 16;
             }
 
-            string ButtonValue="";
+            string ButtonValue = "";
             using (StringReader reader = new StringReader(GetWebSource(in_out, "None", cc = login(id, pw))))        //擷取button的value
             {
                 string line;
@@ -145,7 +170,7 @@ namespace WebService1
             return ReturnWeb;
         }
 
-        private string GetWebSource(string in_out, string postString, CookieContainer cc)         
+        private string GetWebSource(string in_out, string postString, CookieContainer cc)
         {
             HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create("http://140.115.182.62/PartTime/parttime.php/" + in_out);      //建立網站連線
             myRequest.CookieContainer = cc;
@@ -167,7 +192,7 @@ namespace WebService1
             HttpWebResponse response = (HttpWebResponse)myRequest.GetResponse();                                                        //取得回傳的頁面
             StreamReader reader = new StreamReader(response.GetResponseStream());                                                       //並存成string
             string websource = reader.ReadToEnd();
-            
+
             myRequest.Abort();
             response.Close();
             reader.Close();
@@ -191,11 +216,11 @@ namespace WebService1
 
             try
             {
-            Stream stream = myRequest.GetRequestStream(); //open connection
-            stream.Write(postData, 0, postData.Length); // Send the data.
-            stream.Close();
-            
-            HttpWebResponse response = (HttpWebResponse)myRequest.GetResponse();        //紀錄回傳的cookie
+                Stream stream = myRequest.GetRequestStream(); //open connection
+                stream.Write(postData, 0, postData.Length); // Send the data.
+                stream.Close();
+
+                HttpWebResponse response = (HttpWebResponse)myRequest.GetResponse();        //紀錄回傳的cookie
             }
             catch (WebException e)                                                      //連線異常的處理
             {
