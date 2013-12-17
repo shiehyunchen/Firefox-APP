@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/> 
+		<title>Newsletter</title> 	
+		<link rel="stylesheet" type="text/css" href="../css/jquery.mobile-1.3.1.min.css"/>
+		<script type="text/javascript" src='../js/jquery-1.10.2.min.js'></script>
+		<script type="text/javascript" src='../js/jquery.mobile-1.3.1.min.js'></script>
+		<script type="text/javascript" src='./js/blackboardInit.js'></script>
+		<script type="text/javascript" src='../js/setTheme.js'></script>
+	 </head>	
+<script>
+function checkform() 
+{
+    if(document.getElementById("Username").value == '102512608' && document.getElementById("password").value == 'sagarika' ){
+        alert("Login Successful"); // here need to give the link of server to login BB site
+        window.location = "./BlackBoard.html"
+    }else{
+        alert("Access denied. Valid username and password is required.");
+    }
+}
+</script>
+</head> 
+<body>
+		<div id="page" data-role="page">
+			<div id="header" data-role="header" data-id="fool" data-position="fixed">
+				<a href="../index.html" data-icon="back" >Back</a>		
+				<h1>Newsletter</h1>
+				<div id="navbar" data-role="navbar">
+					<ul>
+						<li><a onclick="self.location.href='./Newletter.html'">Department</a></li>
+						<li><a class="ui-btn-active ui-state-persist">BlackBoard</a></li>
+					</ul>
+				</div>
+			</div>
+			
+	   <div id="content" data-role="content">
+		<div data-role="content">
+			<form name="myForm" action="" onsubmit="return checkform()" method="post" >
+				<fieldset>
+					<h2>Login</h2>
+					User Name: <input type="number" name="Username" id="Username" required>
+					Password: <input type="password" name="password" id="password" required>
+					<input type="submit" value="Submit">
+				</fieldset>
+			 </form>
+		   </div>
+	     </div>
+      </div>
+</body>
+</html>
