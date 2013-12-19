@@ -1,8 +1,5 @@
 NCU-Student-tool-kit-Server
 
-2013/12/26:
-140.115.156.46/webservice/WebService.asmx
-
 2013/12/13:
 add method: GetDepartmentNewsList
 	@iPage: which page is requested by client
