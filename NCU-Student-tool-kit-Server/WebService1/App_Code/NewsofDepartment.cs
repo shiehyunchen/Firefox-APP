@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ * NewsofDepartment - get department's news titles and its detail content
+ * Written by Hao Chen - 102522094
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,32 +12,42 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 
-using System.Data;//使用DataTable and DataRow 來儲存資料
+using System.Data;// use DataTable and DataRow to store the data
 using System.Runtime.Serialization.Json;
 
 namespace WebService1
 {
     public class NewsofDepartment
     {
+        // use for storing news title
         public class tagNewsList
         {
             public string ID { get; set; }
             public string TITLE { get; set; }
             public string URL { get; set; }
             public DateTime NEWSDATE { get; set; }
-        }//end class
+        } // end class
 
+        // use for storing news content
         public class tagNewsContent
         {
             public string TITLE { get; set; }
             public string CONTENT { get; set; }
+        } // end class
 
-        }
-
+        /**
+         * GetDepartmentNewsList - Get the department's news titles
+         * @iPage: which page of department website
+         * Return: a json string about ID, title, URL, and date
+         * 
+         * This function is called to get one page news titles.
+         **/
         public string GetDepartmentNewsList(int iPage)
         {
+            // Fool-proofing
             if (iPage <= 0)
                 iPage = 1;
+
             DataTable dtTemp = new DataTable("DepartmentNewsListTable");
             DataColumn c0 = new DataColumn("ID");
             dtTemp.Columns.Add(c0);
@@ -56,6 +70,17 @@ namespace WebService1
             return strTemp;
         }
 
+        /**
+         * FormatNewsListContent - Parsing the html
+         * @dtTemp: pointer to data table from GetDepartmentNewsList()
+         * @strHtml: the html content from website of department news
+         * 
+         * This function is called for parsing the html.
+         * 
+         * The received html content is validated and valid factors are
+         * replied to. In addition, data table(ID, Title, URL, Newsdate)
+         * is configured at the end of a successful parsing.
+         **/
         protected void FormatNewsListContent(ref DataTable dtTemp, string strHtml)
         {
             string strTemp;
@@ -84,6 +109,14 @@ namespace WebService1
             }
         }
 
+        /**
+         * HandleJSONFormat - Take parsing result to json format
+         * @dtTemp: pointer to data table from GetDepartmentNewsList()
+         * Return: a json string about ID, title, URL, and date
+         * 
+         * This function is called for making json string by elements
+         * (ID, Title, URL, Newsdate).
+         **/
         protected string HandleJSONFormat(ref DataTable dtTemp)
         {
             StringBuilder sb = new StringBuilder();
@@ -111,6 +144,17 @@ namespace WebService1
             return sb.ToString();
         }
 
+        /**
+         * SaveDataToRow - Store parsing result to data table
+         * @dtTemp: pointer to data table from GetDepartmentNewsList()
+         * @strID: the news ID
+         * @strTitle: the news title
+         * @strUrl: the URL of news detail content
+         * @strDate: the date when news be posted
+         * 
+         * This function is called for storing the parsing results to 
+         * data table.
+         **/
         protected void SaveDataToRow(ref DataTable dtTemp, string strID, string strTitle, string strUrl, string strDate)
         {
             DataRow r = dtTemp.NewRow();

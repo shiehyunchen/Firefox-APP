@@ -21,13 +21,13 @@ namespace WebService1
     [System.Web.Script.Services.ScriptService]
     public class Service1 : System.Web.Services.WebService
     {
-        protected NewsofDepartment m_NewsofDepartment;
-        protected NewsofBBSystem m_NewsofBBSystem;
+        protected NewsofDepartment m_NewsofDepartment;      // Declare NewsofDepartment class
+        protected NewsofBBSystem m_NewsofBBSystem;          // Declare NewsofBBSystem class
 
         public Service1()
         {
-            m_NewsofDepartment = new NewsofDepartment();
-            m_NewsofBBSystem = new NewsofBBSystem();
+            m_NewsofDepartment = new NewsofDepartment();    // allocate
+            m_NewsofBBSystem = new NewsofBBSystem();        // allocate
         }
 
         [WebMethod]
@@ -41,9 +41,11 @@ namespace WebService1
          * @iPage: which page is requested by client
          * Return: a json string about ID, title, URL, and date
          * 
-         * This function is called to get one page news titles.
+         * This method is called to get one page news titles.
          * Client can chose one news URL to get more detail content
          * by function GetDepartmentNewsContent().
+         * 
+         * Written by Hao Chen - 102522094
          **/
         [WebMethod]
         public string GetDepartmentNewsList(int iPage)
@@ -54,6 +56,18 @@ namespace WebService1
             return "";
         }
 
+        /**
+         * GetBBSystemCourseList - Get the account's all tittle of courses
+         * @strStudentID: the account's ID
+         * @strPassword: the account's password
+         * Return: a json string about course title, and URL
+         * 
+         * This function is called to get course titles which the student took.
+         * Client can chose one course URL to get more detail content
+         * by function GetBBSystemCourseContent().
+         * 
+         * Written by Hao Chen - 102522094
+         **/
         [WebMethod]
         public string GetBBSystemCourseList(string strStudentID, string strPassword)
         {

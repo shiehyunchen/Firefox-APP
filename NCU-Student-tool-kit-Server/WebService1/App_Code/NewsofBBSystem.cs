@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ * NewsofBBSystem - get the account's course titles and its detail content
+ * Written by Hao Chen - 102522094
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,19 +12,28 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 
-using System.Data;//使用DataTable and DataRow 來儲存資料
+using System.Data;// use DataTable and DataRow to store the data
 using System.Runtime.Serialization.Json;
 
 namespace WebService1
 {
     public class NewsofBBSystem
     {
+        // use for storing course titles
         public class tagCourseList
         {
             public string NAME { get; set; }
             public string URL { get; set; }
         }
 
+        /**
+         * GetBBSystemCourseTitle - Get the BB system's course titles what the account took
+         * @cookies: pointer to cookies of the account already logined message
+         * @strStudentID: the account's ID
+         * @strPassword: the account's password
+         * 
+         * This function is called to get the account already logined message.
+         **/
         public void BBSystemLogin(ref CookieContainer cookies, string strStudentID, string strPassword)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://bb.ncu.edu.tw/webapps/login/");
@@ -50,12 +63,16 @@ namespace WebService1
             dataStream.Close();
 
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            //StreamReader objReader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-            //string strTemp = objReader.ReadToEnd();
-
             response.Close();
         }
 
+        /**
+         * GetBBSystemCourseTitle - Get the BB system's course titles what the account took
+         * @cookies: cookies of the account already logined message
+         * Return: a json string about Name, and URL
+         * 
+         * This function is called to get course titles which the student took.
+         **/
         public string GetBBSystemCourseTitle(CookieContainer cookies)
         {
             if (cookies.Count <= 0)
@@ -96,6 +113,17 @@ namespace WebService1
             return strTemp;
         }
 
+        /**
+         * FormatCourseListContent - Parsing the html
+         * @dtTemp: pointer to data table from GetBBSystemCourseTitle()
+         * @strHtml: the html content from website of department news
+         * 
+         * This function is called for parsing the html.
+         * 
+         * The received html content is validated and valid factors are
+         * replied to. In addition, data table(Name, URL)
+         * is configured at the end of a successful parsing.
+         **/
         protected void FormatCourseListContent(ref DataTable dtTemp, string strHtml)
         {
             string strTemp;
@@ -118,6 +146,14 @@ namespace WebService1
             }
         }
 
+        /**
+         * HandleCourseJSONFormat - Take parsing result to json format
+         * @dtTemp: pointer to data table from GetBBSystemCourseTitle()
+         * Return: a json string about name, and URL
+         * 
+         * This function is called for making json string by elements
+         * (Name, URL).
+         **/
         protected string HandleCourseJSONFormat(ref DataTable dtTemp)
         {
             StringBuilder sb = new StringBuilder();
@@ -143,6 +179,15 @@ namespace WebService1
             return sb.ToString();
         }
 
+        /**
+         * SaveCourseDataToRow - Store parsing result to data table
+         * @dtTemp: pointer to data table from GetDepartmentNewsList()
+         * @strName: the course name
+         * @strUrl: the URL of course detail content
+         * 
+         * This function is called for storing the parsing results to 
+         * data table.
+         **/
         protected void SaveCourseDataToRow(ref DataTable dtTemp, string strName, string strUrl)
         {
             DataRow r = dtTemp.NewRow();
