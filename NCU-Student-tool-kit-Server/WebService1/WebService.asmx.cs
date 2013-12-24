@@ -21,14 +21,14 @@ namespace WebService1
     [System.Web.Script.Services.ScriptService]
     public class Service1 : System.Web.Services.WebService
     {
-        [WebMethod]
+        [WebMethod] //******102522095 莊凱迪
         public string HelloWorld()
         {
             return "Hello World";
         }
 
 
-        [WebMethod]
+        [WebMethod] //******102522095 莊凱迪
         public string GetState(string id, string pw)                   //登入帳號,回傳帳號的狀態
         {
             CookieContainer cc = new CookieContainer();             //存網站的cookie
@@ -88,9 +88,9 @@ namespace WebService1
             }
             return ReturnPage;
         }
-        
-        
-        [WebMethod]
+
+
+        [WebMethod] //******102522095 莊凱迪
         public string signin_out(string id, string pw, string  in_out, int TitleNum)        //in_out 傳入值為 signin 或 signout  ,   TitleNum為第幾個案子
         {
             CookieContainer cc = new CookieContainer();             //存網站的cookie
@@ -145,6 +145,7 @@ namespace WebService1
             return ReturnWeb;
         }
 
+        //******102522095 莊凱迪
         private string GetWebSource(string in_out, string postString, CookieContainer cc)         
         {
             HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create("http://140.115.182.62/PartTime/parttime.php/" + in_out);      //建立網站連線
@@ -175,6 +176,7 @@ namespace WebService1
             return websource;
         }
 
+        //******102522095 莊凱迪
         private CookieContainer login(string id, string pw)             //登入網站,取得cookie
         {
             CookieContainer cc = new CookieContainer();             //存網站的cookie
