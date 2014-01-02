@@ -166,7 +166,7 @@ namespace WebService1
             dtTemp.Rows.Add(r);
         }
 
-        public string GetDepartmentNewContent(string strUrl)
+        public string GetDepartmentNewsContent(string strUrl)
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(strUrl);
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();

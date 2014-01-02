@@ -66,7 +66,7 @@ namespace WebService1
         [WebMethod]
         public string GetDepartmentNewContent(string Url)
         {
-            Context.Response.Write(m_NewsofDepartment.GetDepartmentNewContent(Url));
+            Context.Response.Write(m_NewsofDepartment.GetDepartmentNewsContent(Url));
             Context.Response.End();
 
             return "";
