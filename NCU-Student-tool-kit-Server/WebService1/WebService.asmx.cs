@@ -57,6 +57,22 @@ namespace WebService1
         }
 
         /**
+         * GetDepartmentNewContent - Get the department's news content
+         * @Url: which news is requested by client
+         * Return: a text string about content detail
+         *  
+         * Written by Hao Chen - 102522094
+         **/
+        [WebMethod]
+        public string GetDepartmentNewContent(string Url)
+        {
+            Context.Response.Write(m_NewsofDepartment.GetDepartmentNewContent(Url));
+            Context.Response.End();
+
+            return "";
+        }
+
+        /**
          * GetBBSystemCourseList - Get the account's all tittle of courses
          * @strStudentID: the account's ID
          * @strPassword: the account's password

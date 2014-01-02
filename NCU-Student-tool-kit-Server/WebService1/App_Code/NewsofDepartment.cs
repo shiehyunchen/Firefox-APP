@@ -166,5 +166,24 @@ namespace WebService1
             dtTemp.Rows.Add(r);
         }
 
+        public string GetDepartmentNewContent(string strUrl)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(strUrl);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+            StreamReader objReader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+            string strTemp = objReader.ReadToEnd();
+            strTemp = WebUtility.HtmlDecode(strTemp);
+            response.Close();
+
+            strTemp = Regex.Match(strTemp, "<td style=\"table-layout:fixed; word-break: break-all;\">(\\s|.)+?</td>", RegexOptions.Multiline).Value;
+            strTemp = Regex.Replace(strTemp, "<a href(.|\\s)+?</a>", "");
+            strTemp = Regex.Replace(strTemp, "<[^>]*>", "");
+            strTemp = Regex.Replace(strTemp, "</p>|</div>", "");
+            strTemp = Regex.Replace(strTemp, "&nbsp;", " ");
+
+            return strTemp;
+        }
+
     }
 }
