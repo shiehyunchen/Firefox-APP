@@ -176,6 +176,11 @@ namespace WebService1
                 var result = new { state = "尚未簽退" };
                 ReturnPage = JsonConvert.SerializeObject(result);
             }
+            else if (ReturnPage.Contains("您沒有兼任任何計畫"))                                          //出現這訊息表示尚未簽退
+            {
+                var result = new { state = "沒有兼任任何計畫" };
+                ReturnPage = JsonConvert.SerializeObject(result);
+            }
             return ReturnPage;
         }
 
@@ -289,7 +294,7 @@ namespace WebService1
 
                 HttpWebResponse response = (HttpWebResponse)myRequest.GetResponse();        //紀錄回傳的cookie
             }
-            catch (WebException e)                                                      //連線異常的處理
+            catch                                                           //連線異常的處理
             {
                 return cc;
             }
