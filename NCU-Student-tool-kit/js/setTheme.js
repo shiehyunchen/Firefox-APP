@@ -8,3 +8,7 @@ function setTheme(select){
 	$('#content').attr('data-theme',select).removeClass('ui-body-'+current).addClass('ui-body-'+select).trigger('create');
 	$('#footer').attr('data-theme',select).removeClass('ui-body-'+current).addClass('ui-body-'+select).trigger('create');
 };
+function setFontSize(size){	
+	window.localStorage.setItem("AppFontSize",size);
+	$('.ui-btn-text').css('font-size',size);
+};
