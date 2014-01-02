@@ -69,6 +69,12 @@ namespace WebService1
             dataStream.Close();
 
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            StreamReader objReader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+            string strTemp = objReader.ReadToEnd();
+            if (strTemp.Contains("保留所有權利。美國專利編號 6,988,138。其他專利申請中。"))
+            {
+                cookies = new CookieContainer();
+            }
             response.Close();
         }
 
@@ -208,6 +214,10 @@ namespace WebService1
             if (cookies.Count <= 0)
             {
                 return "No Login data";
+            }
+            else if (strID.Length == 0)
+            {
+                return "strID could not be empty";
             }
             DataTable dtTemp = new DataTable("BBSystemCourseContentTable");
             DataColumn c0 = new DataColumn("TITLE");
