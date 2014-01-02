@@ -64,9 +64,9 @@ namespace WebService1
          * Written by Hao Chen - 102522094
          **/
         [WebMethod]
-        public string GetDepartmentNewContent(string Url)
+        public string GetDepartmentNewContent(string strID)
         {
-            Context.Response.Write(m_NewsofDepartment.GetDepartmentNewsContent(Url));
+            Context.Response.Write(m_NewsofDepartment.GetDepartmentNewsContent(strID));
             Context.Response.End();
 
             return "";
@@ -91,6 +91,27 @@ namespace WebService1
 
             m_NewsofBBSystem.BBSystemLogin(ref cookies, strStudentID, strPassword);
             Context.Response.Write(m_NewsofBBSystem.GetBBSystemCourseTitle(cookies));
+            Context.Response.End();
+
+            return "";
+        }
+
+        /**
+         * GetBBSystemCourseList - Get titles and contents of one course
+         * @strStudentID: the account's ID
+         * @strPassword: the account's password
+         * @strUrl: the URL of the course
+         * Return: a json string about title, and content
+         * 
+         * Written by Hao Chen - 102522094
+         **/
+        [WebMethod]
+        public string GetBBSystemCourseContentList(string strStudentID, string strPassword, string strID)
+        {
+            CookieContainer cookies = new CookieContainer();
+
+            m_NewsofBBSystem.BBSystemLogin(ref cookies, strStudentID, strPassword);
+            Context.Response.Write(m_NewsofBBSystem.GetBBSystemCourseContent(cookies, strID));
             Context.Response.End();
 
             return "";

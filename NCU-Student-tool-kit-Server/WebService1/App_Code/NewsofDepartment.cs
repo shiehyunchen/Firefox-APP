@@ -166,9 +166,14 @@ namespace WebService1
             dtTemp.Rows.Add(r);
         }
 
-        public string GetDepartmentNewsContent(string strUrl)
+        /**
+         * GetDepartmentNewsContent - parse detail content of the news
+         * @strUrl: the URL of news detail content
+         * 
+         **/
+        public string GetDepartmentNewsContent(string strID)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(strUrl);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://www.csie.ncu.edu.tw/show.php?cate=0&mode=view&pno=" + strID);
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
             StreamReader objReader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
