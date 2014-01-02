@@ -26,6 +26,12 @@ namespace WebService1
             public string URL { get; set; }
         }
 
+        public class tagCourseContent
+        {
+            public string TITLE { get; set; }
+            public string CONTENT { get; set; }
+        }
+
         /**
          * GetBBSystemCourseTitle - Get the BB system's course titles what the account took
          * @cookies: pointer to cookies of the account already logined message
@@ -111,6 +117,50 @@ namespace WebService1
             response.Close();
 
             return strTemp;
+        }
+
+        public string GetBBSystemCourseContent(CookieContainer cookies, string Url)
+        {
+            if (cookies.Count <= 0)
+            {
+                return "No Login data";
+            }
+            DataTable dtTemp = new DataTable("BBSystemCourseContentTable");
+            DataColumn c0 = new DataColumn("TITLE");
+            dtTemp.Columns.Add(c0);
+            DataColumn c1 = new DataColumn("CONTENT");
+            dtTemp.Columns.Add(c1);
+
+            Url = Regex.Match(Url, "&id=(\\s|.)+?&", RegexOptions.Multiline).Value;
+            Url = Regex.Replace(Url, "&", "");
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://bb.ncu.edu.tw/webapps/blackboard/execute/announcement?method=search&context=mybb&course_" + Url + "&viewChoice=3");
+            request.Method = "GET";
+
+            request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
+            request.Headers.Add("Accept-Encoding:gzip,deflate,sdch");
+            request.Headers.Add("Accept-Language:zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4");
+            request.KeepAlive = true;
+            request.Headers.Add("Cookie:cookies_enabled=yes");
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36";
+            request.Referer = "https://bb.ncu.edu.tw/webapps/login/";
+            request.Host = "bb.ncu.edu.tw";
+            request.CookieContainer = cookies;
+
+            // for the self-signed SSL certificate
+            ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            StreamReader objReader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+            string strTem = objReader.ReadToEnd();
+
+            //FormatCourseListContent(ref dtTemp, objReader.ReadToEnd());
+            //string strTemp = HandleCourseJSONFormat(ref dtTemp);
+
+            response.Close();
+
+            return strTem;
         }
 
         /**
