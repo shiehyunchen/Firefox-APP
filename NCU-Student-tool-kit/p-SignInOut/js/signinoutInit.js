@@ -29,7 +29,7 @@ $(function(){
 				if (textStatus == "success") {
 					msg = JSON.parse($(data).find('string').text());
 					state = msg.state;
-					if(msg.state == "登入成功,尚未簽到") {								
+					if(msg.state == "Login Success! Please signin.") {								
 						title = msg.title;
 						var id = 'option_1';								
 						var $container = $('#optionsgroup').find('.ui-controlgroup-controls');	
@@ -44,14 +44,18 @@ $(function(){
 						$("#image").attr('src','./img/signIn.png');
 						$("#image").attr('onclick','callWebService("signin",window.sessionStorage.getItem("acc"),window.sessionStorage.getItem("pwd"))');
 					}
-					else if(msg.state == "User或Password錯誤"){
-						alert("User或Password錯誤");
+					else if(msg.state == "Login Success! No projects."){
+						alert("You don't have any projects.");
 						self.location.href="../index.html";
 					}
-					else{
-					//尚未簽退
+					else if(msg.state == "Login Success! Please signout."){
+						//尚未簽退
 						$("#image").attr('src','./img/signOut.png');
 						$("#image").attr('onclick','callWebService("signout",window.sessionStorage.getItem("acc"),window.sessionStorage.getItem("pwd"))');
+					}
+					else if(msg.state == "User name or password error."){
+						alert("User name or password error.");
+						self.location.href="../index.html";
 					}
 				}
 			 },
