@@ -30,8 +30,12 @@ function send(){
 		success: function (data, textStatus) {	 
 			if (textStatus == "success") {
 				msg = JSON.parse($(data).find('string').text());
-				if(msg.state == "User或Password錯誤"){
-					alert("User或Password錯誤");					
+				if(msg.state == "User name or password error."){
+					alert("User name or password error.");					
+				}
+				else if(msg.state == "Login Success! No projects."){
+					alert("You don't have any projects.");
+					self.location.href="../index.html";
 				}
 				else{
 					window.sessionStorage.setItem("fromLogin","1");
