@@ -72,7 +72,7 @@ function findMyCurrentLocation(desLatlng) {
 }
 
 function showRoute(value) {
-	var buildingInfoFile = "./building.json";
+	var buildingInfoFile = "./js/building.json";
 	$.getJSON(buildingInfoFile, function(building){
 		$.each(building, function(i, item){
 			if(item.id == value){
