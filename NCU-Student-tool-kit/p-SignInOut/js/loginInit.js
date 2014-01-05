@@ -33,10 +33,6 @@ function send(){
 				if(msg.state == "User name or password error."){
 					alert("User name or password error.");					
 				}
-				else if(msg.state == "Login Success! No projects."){
-					alert("You don't have any projects.");
-					self.location.href="../index.html";
-				}
 				else{
 					window.sessionStorage.setItem("fromLogin","1");
 					self.location.href='./SignInOut.html';					

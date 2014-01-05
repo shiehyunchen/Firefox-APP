@@ -3,8 +3,7 @@ $(function(){
 		window.localStorage.setItem("acc", $('#acc').val());				
 		window.localStorage.setItem("pwd", $('#pwd').val());
 		window.sessionStorage.clear();
-		//window.localStorage
-		//alert($('#acc').val()+'+'+$('#pwd').val());
+		alert("Saving successful!");
 	});	
 	$("#acc").val(window.localStorage.getItem("acc"));
 	$("#pwd").val(window.localStorage.getItem("pwd"));

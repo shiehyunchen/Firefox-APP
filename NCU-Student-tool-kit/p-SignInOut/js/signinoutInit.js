@@ -45,8 +45,7 @@ $(function(){
 						$("#image").attr('onclick','callWebService("signin",window.sessionStorage.getItem("acc"),window.sessionStorage.getItem("pwd"))');
 					}
 					else if(msg.state == "Login Success! No projects."){
-						alert("You don't have any projects.");
-						self.location.href="../index.html";
+						$("#image").attr('src','./img/nonProjects.png');						
 					}
 					else if(msg.state == "Login Success! Please signout."){
 						//尚未簽退
