@@ -20,7 +20,5 @@ $(function(){
 	$('#fontBtn-c').click(function() {
 		setFontSize('90%');
 	});
-	setTheme(window.localStorage.getItem("AppTheme"));
-	setFontSize(window.localStorage.getItem("AppFontSize"));
 });
 

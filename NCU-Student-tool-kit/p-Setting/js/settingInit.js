@@ -8,6 +8,4 @@ $(function(){
 	$("#acc").val(window.localStorage.getItem("acc"));
 	$("#pwd").val(window.localStorage.getItem("pwd"));
 	$('.ui-page-text').css('font-size','10px');
-	setTheme(window.localStorage.getItem("AppTheme"));
-	setFontSize(window.localStorage.getItem("AppFontSize"));
 });

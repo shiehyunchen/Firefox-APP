@@ -1,6 +1,4 @@
 $(function(){
-	setTheme(window.localStorage.getItem("AppTheme"));
-	setFontSize(window.localStorage.getItem("AppFontSize"));
 	var login = window.sessionStorage.getItem("fromLogin");
 	var acc,pwd;
 	if(login==null){

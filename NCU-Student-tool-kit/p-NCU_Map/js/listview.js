@@ -1,4 +1,4 @@
-var buildingInfoFile = "./building.json";
+var buildingInfoFile = "./js/building.json";
 
 $.getJSON(buildingInfoFile, function(building){
 	$('#buildingList').empty();
