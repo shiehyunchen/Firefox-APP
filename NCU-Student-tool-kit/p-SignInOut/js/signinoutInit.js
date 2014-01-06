@@ -9,8 +9,11 @@ $(function(){
 		acc = window.sessionStorage.getItem("acc");
 		pwd = window.sessionStorage.getItem("pwd");
 	}
-	if(acc==null||pwd==null||acc==""||pwd=="")
-		self.location.href='./Login.html';
+	//Getting acc and pwd from session or local Storage
+	if(acc==null||pwd==null||acc==""||pwd=="") {
+		self.location.href='./Login.html';	
+		//Redirect to Login page
+	}
 	else {
 		var info = "id="+acc+"&pw="+pwd;
 		window.sessionStorage.setItem("acc",acc);
@@ -27,7 +30,8 @@ $(function(){
 				if (textStatus == "success") {
 					msg = JSON.parse($(data).find('string').text());
 					state = msg.state;
-					if(msg.state == "Login Success! Please signin.") {								
+					if(msg.state == "Login Success! Please signin.") {	
+						//SignIn
 						title = msg.title;
 						var id = 'option_1';								
 						var $container = $('#optionsgroup').find('.ui-controlgroup-controls');	
@@ -43,14 +47,16 @@ $(function(){
 						$("#image").attr('onclick','callWebService("signin",window.sessionStorage.getItem("acc"),window.sessionStorage.getItem("pwd"))');
 					}
 					else if(msg.state == "Login Success! No projects."){
+						//Non project
 						$("#image").attr('src','./img/nonProjects.png');						
 					}
 					else if(msg.state == "Login Success! Please signout."){
-						//尚未簽退
+						//SignOut
 						$("#image").attr('src','./img/signOut.png');
 						$("#image").attr('onclick','callWebService("signout",window.sessionStorage.getItem("acc"),window.sessionStorage.getItem("pwd"))');
 					}
 					else if(msg.state == "User name or password error."){
+						//Acc or Pwd error
 						alert("User name or password error.");
 						self.location.href="../index.html";
 					}

@@ -10,12 +10,11 @@ function send(){
 			window.localStorage.setItem("acc", acc);				
 			window.localStorage.setItem("pwd", pwd);
 		}
-		else{
-			window.sessionStorage.setItem("acc", acc);				
-			window.sessionStorage.setItem("pwd", pwd);
-		}
+		window.sessionStorage.setItem("acc", acc);				
+		window.sessionStorage.setItem("pwd", pwd);
+		//Saving the session with acc and pwd
 		var info = "id="+acc+"&"+"pw="+pwd;
-		
+		//Server format for acc and pwd
 		$.ajax({
 		type: "POST",
 		contentType: "application/x-www-form-urlencoded; charset=utf-8",
@@ -30,7 +29,8 @@ function send(){
 				}
 				else{
 					window.sessionStorage.setItem("fromLogin","1");
-					self.location.href='./SignInOut.html';					
+					self.location.href='./SignInOut.html';
+					//Redirect to SignInOut
 				}
 			}
 		 },
