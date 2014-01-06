@@ -1,4 +1,4 @@
-$(function(){
+$(function(){	
 	var login = window.sessionStorage.getItem("fromLogin");
 	var acc,pwd;
 	if(login==null){

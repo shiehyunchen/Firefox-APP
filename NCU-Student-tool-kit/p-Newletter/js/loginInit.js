@@ -1,8 +1,3 @@
-$(function(){
-	setTheme(window.localStorage.getItem("AppTheme"));
-	setFontSize(window.localStorage.getItem("AppFontSize"));
-});
-
 function send(){
 	if($('#acc').val()=="")
 		alert("Please Fill the Account");
