@@ -10,11 +10,20 @@ function send(){
 			window.localStorage.setItem("acc", acc);				
 			window.localStorage.setItem("pwd", pwd);
 		}
+<<<<<<< HEAD
 		window.sessionStorage.setItem("acc", acc);				
 		window.sessionStorage.setItem("pwd", pwd);
 		//Saving the session with acc and pwd
 		var info = "id="+acc+"&"+"pw="+pwd;
 		//Server format for acc and pwd
+=======
+		else{
+			window.sessionStorage.setItem("acc", acc);				
+			window.sessionStorage.setItem("pwd", pwd);
+		}
+		var info = "strStudentID="+acc+"&"+"strPassword="+pwd;
+		
+>>>>>>> shaggy_BB
 		$.ajax({
 		type: "POST",
 		contentType: "application/x-www-form-urlencoded; charset=utf-8",
@@ -29,8 +38,12 @@ function send(){
 				}
 				else{
 					window.sessionStorage.setItem("fromLogin","1");
+<<<<<<< HEAD
 					self.location.href='./SignInOut.html';
 					//Redirect to SignInOut
+=======
+					self.location.href='./BlackBoard.html';					
+>>>>>>> shaggy_BB
 				}
 			}
 		 },
