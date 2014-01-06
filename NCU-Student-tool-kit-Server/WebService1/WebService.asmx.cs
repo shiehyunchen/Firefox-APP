@@ -130,7 +130,7 @@ namespace WebService1
 
             if (ReturnPage.Contains("國立中央大學入口網站"))                                     //包含此字串,代表登入失敗
             {
-                var result = new { state = "User或Password錯誤" };                             //回傳訊息包程JSON
+                var result = new { state = "User name or password error." };                             //回傳訊息包程JSON
                 ReturnPage = JsonConvert.SerializeObject(result);
             }
             else if (ReturnPage.Contains("請選擇下列計畫進行簽到"))                         //登入成功,且尚未簽到,  回傳簽到項目
@@ -164,7 +164,7 @@ namespace WebService1
                 }
                 var result = new
                 {
-                    state = "登入成功,尚未簽到",
+                    state = "Login Success! Please signin.",
                     count = title.Count,
                     title = from s in title select s
                 };                                                            //包成JSON
@@ -173,7 +173,12 @@ namespace WebService1
             }
             else if (ReturnPage.Contains("您尚未簽退"))                                          //出現這訊息表示尚未簽退
             {
-                var result = new { state = "尚未簽退" };
+                var result = new { state = "Login Success! Please signout." };
+                ReturnPage = JsonConvert.SerializeObject(result);
+            }
+            else if (ReturnPage.Contains("您沒有兼任任何計畫"))                                          //出現這訊息表示尚未簽退
+            {
+                var result = new { state = "Login Success! No projects." };
                 ReturnPage = JsonConvert.SerializeObject(result);
             }
             return ReturnPage;
@@ -222,11 +227,11 @@ namespace WebService1
 
             if (ReturnWeb.Contains("簽到成功"))
             {
-                ReturnWeb = "簽到成功";
+                ReturnWeb = "Signin successful.";
             }
             else if (ReturnWeb.Contains("簽退成功"))
             {
-                ReturnWeb = "簽退成功";
+                ReturnWeb = "Signout successful.";
             }
             else
             {
@@ -289,7 +294,7 @@ namespace WebService1
 
                 HttpWebResponse response = (HttpWebResponse)myRequest.GetResponse();        //紀錄回傳的cookie
             }
-            catch (WebException e)                                                      //連線異常的處理
+            catch                                                           //連線異常的處理
             {
                 return cc;
             }

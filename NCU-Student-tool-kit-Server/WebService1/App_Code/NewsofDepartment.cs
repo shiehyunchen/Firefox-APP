@@ -183,12 +183,10 @@ namespace WebService1
 
             strTemp = Regex.Match(strTemp, "<td style=\"table-layout:fixed; word-break: break-all;\">(\\s|.)+?</td>", RegexOptions.Multiline).Value;
             strTemp = Regex.Replace(strTemp, "<a href(.|\\s)+?</a>", "");
-            strTemp = Regex.Replace(strTemp, "<br />", "\n");
             strTemp = Regex.Replace(strTemp, "<[^>]*>", "");
             strTemp = Regex.Replace(strTemp, "</p>|</div>", "");
             strTemp = Regex.Replace(strTemp, "&nbsp;", " ");
             strTemp = Regex.Replace(strTemp, "\n", "<br />");
-
 
             return strTemp;
         }

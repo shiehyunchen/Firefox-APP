@@ -272,8 +272,8 @@ namespace WebService1
 
                 strContent = Regex.Match(match.Value, "<p>(\\s|.)+?</p>", RegexOptions.Multiline).Value;
                 strContent = Regex.Replace(strContent, "<p>|</p>", "");
-                //strContent = Regex.Replace(strContent, "<br /><br />", "\n");
-                //strContent = Regex.Replace(strContent, "<br />", "\n");
+                strContent = Regex.Replace(strContent, "<br /><br />", "\n");
+                strContent = Regex.Replace(strContent, "<br />", "\n");
                 strContent = Regex.Replace(strContent, "<div>", "\n");
                 strContent = Regex.Replace(strContent, "</div>", "");
                 strContent = Regex.Replace(strContent, "<font (\\s|.)+?>", "");
