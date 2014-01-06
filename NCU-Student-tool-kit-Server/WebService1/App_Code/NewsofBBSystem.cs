@@ -272,13 +272,14 @@ namespace WebService1
 
                 strContent = Regex.Match(match.Value, "<p>(\\s|.)+?</p>", RegexOptions.Multiline).Value;
                 strContent = Regex.Replace(strContent, "<p>|</p>", "");
-                strContent = Regex.Replace(strContent, "<br /><br />", "\n");
-                strContent = Regex.Replace(strContent, "<br />", "\n");
+                //strContent = Regex.Replace(strContent, "<br /><br />", "\n");
+                //strContent = Regex.Replace(strContent, "<br />", "\n");
                 strContent = Regex.Replace(strContent, "<div>", "\n");
                 strContent = Regex.Replace(strContent, "</div>", "");
                 strContent = Regex.Replace(strContent, "<font (\\s|.)+?>", "");
                 strContent = Regex.Replace(strContent, "</font>", "");
                 strContent = Regex.Replace(strContent, "&nbsp;", "");
+                strContent = Regex.Replace(strContent, "\n", "<br />");
 
                 SaveContentDataToRow(ref dtTemp, strTitle, strContent);
             }

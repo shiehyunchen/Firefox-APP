@@ -12,4 +12,3 @@ C:\Users\HaoChen\Documents\GitHub\Firefox-APP\NCU-Student-tool-kit-Server\WebSer
 C:\Users\HaoChen\Documents\GitHub\Firefox-APP\NCU-Student-tool-kit-Server\WebService1\bin\WebService1.pdb
 C:\Users\HaoChen\Documents\GitHub\Firefox-APP\NCU-Student-tool-kit-Server\WebService1\obj\Debug\WebService1.dll
 C:\Users\HaoChen\Documents\GitHub\Firefox-APP\NCU-Student-tool-kit-Server\WebService1\obj\Debug\WebService1.pdb
-C:\Users\HaoChen\Documents\GitHub\Firefox-APP\NCU-Student-tool-kit-Server\WebService1\obj\Debug\WebService1.csprojResolveAssemblyReference.cache
