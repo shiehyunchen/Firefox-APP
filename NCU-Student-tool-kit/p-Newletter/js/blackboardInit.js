@@ -29,11 +29,11 @@ $(function(){
 					$("#course").empty();
 					for(i=0;i<data.length;i++)
 					{	
-						var courseID = $(data)[i].ID.substring(1,6);
+						var courseID = $(data)[i].ID;/*substring(1,6);*/
 						var content = "<option value=\""+courseID+"\">"+$(data)[i].NAME+"</option>";
 		        		$("#course").append( content ).selectmenu('refresh');
 					}
-					get_content(courseID);
+					get_content($(data)[0].ID);
 				}
 			 },
 			error: function (data, status, error) {
