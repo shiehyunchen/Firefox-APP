@@ -33,7 +33,7 @@ $(function(){
 						var content = "<option value=\""+courseID+"\">"+$(data)[i].NAME+"</option>";
 		        		$("#course").append( content ).selectmenu('refresh');
 					}
-					get_content(courseID);
+					get_content($(data)[0].ID.substring(1,6));
 				}
 			 },
 			error: function (data, status, error) {
@@ -42,10 +42,17 @@ $(function(){
 		});
 	}			
 });
- function get_content(ID)
+ function get_content(ID,acc,pwd)
  {
-		var acc = window.sessionStorage.getItem("acc");
-		var pwd = window.sessionStorage.getItem("pwd");
+		var acc,pwd;		
+		acc = window.localStorage.getItem("acc");
+		pwd = window.localStorage.getItem("pwd");
+		
+		if(acc==null||pwd==null||acc==""||pwd==""){
+			acc = window.sessionStorage.getItem("acc");
+			pwd = window.sessionStorage.getItem("pwd");
+		}
+		
 		var info = "strStudentID="+acc+"&"+"strPassword="+pwd+"&"+"strID="+ID;
 		var state;
 		var title;
